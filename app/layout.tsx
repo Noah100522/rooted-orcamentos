@@ -1,4 +1,5 @@
 import './globals.css'
+import './print-overrides.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Rooted Orçamentos IA', description: 'Orçamentos profissionais da Rooted Informática' }
