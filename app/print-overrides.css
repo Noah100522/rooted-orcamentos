@@ -1,0 +1,48 @@
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  html, body { width: 210mm; min-height: 297mm; margin: 0 !important; padding: 0 !important; background: #fff !important; }
+  .shell { width: 210mm !important; max-width: none !important; margin: 0 !important; }
+  .header, .shell > .notice, .footer, .grid > .panel:first-child { display: none !important; }
+  .grid { display: block !important; margin: 0 !important; }
+  .preview {
+    display: block !important;
+    position: relative !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 48mm 13mm 25mm 43mm !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    background: #fff url('/modelo.svg') center / 210mm 297mm no-repeat !important;
+  }
+  .preview::before, .preview::after { display: none !important; }
+  .preview > * { position: relative; z-index: 2; }
+  .preview .section-heading { display: none !important; }
+  .preview-head {
+    position: absolute !important;
+    top: 24mm !important;
+    left: 43mm !important;
+    right: 13mm !important;
+    border: 0 !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+  }
+  .preview-head b { opacity: 0 !important; }
+  .preview-head span { position: absolute !important; left: -31mm !important; top: 18mm !important; color: #fff !important; font-weight: 800 !important; }
+  .preview > p { font-size: 8pt !important; line-height: 1.3 !important; margin: 0 0 2mm !important; }
+  .preview > p:nth-of-type(1) { margin-top: 3mm !important; }
+  .preview > p:nth-of-type(4) { margin-top: 24mm !important; min-height: 15mm !important; border-bottom: 0 !important; }
+  .summary { margin: 34mm 0 7mm !important; background: transparent !important; color: #111 !important; border: 0 !important; padding: 0 !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2mm 10mm !important; }
+  .summary .muted, .summary strong { color: #111 !important; text-align: left !important; }
+  .summary strong { font-size: 14pt !important; margin: 0 !important; }
+  .summary .line { font-size: 7.5pt !important; padding: 1mm 0 !important; border: 0 !important; color: #111 !important; }
+  .preview h3 { font-size: 8pt !important; margin: 4mm 0 2mm !important; }
+  .preview h3:first-of-type:before { display: none !important; }
+  .preview .line { font-size: 7.5pt !important; padding: 1.5mm 0 !important; border-bottom: 1px solid #cfcfcf !important; }
+  .preview .small { font-size: 6.5pt !important; line-height: 1.2 !important; }
+  .preview .notice { background: transparent !important; color: #111 !important; padding: 0 !important; margin-top: 3mm !important; font-size: 6.5pt !important; }
+  .preview .history-list { display: none !important; }
+}
