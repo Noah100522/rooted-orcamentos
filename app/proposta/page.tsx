@@ -1,172 +1,30 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
-const money = (value: number) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+const brl = (n:number) => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})
 
-export default function PropostaPage() {
-  const [client, setClient] = useState('Ecco Cleaner')
-  const [contact, setContact] = useState('')
-  const [date, setDate] = useState(new Date().toLocaleDateString('pt-BR'))
-  const [notes, setNotes] = useState('')
-  const website = 4000
-  const entry = 2000
-  const final = 2000
-  const support = 700
-  const totalInitial = useMemo(() => entry + final, [])
-
-  return (
-    <main className="proposal-page">
-      <div className="proposal-toolbar no-print">
-        <div>
-          <div className="toolbar-title">ROOTED <span>PROPOSTA COMERCIAL</span></div>
-          <p>Preencha os dados, revise e utilize “Gerar PDF” para imprimir ou salvar em PDF.</p>
-        </div>
-        <div className="toolbar-actions">
-          <button className="btn btn-light" onClick={() => window.print()}>Gerar PDF / Imprimir</button>
-          <button className="btn btn-lime" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Voltar ao topo ↑</button>
-        </div>
-      </div>
-
-      <section className="proposal-sheet">
-        <header className="proposal-header">
-          <div className="rooted-brand" aria-label="Rooted Informática">
-            <span className="rooted-symbol">R</span>
-            <span><strong>ROOTED</strong><small>INFORMÁTICA</small></span>
-          </div>
-          <div className="proposal-meta">
-            <span>PROPOSTA COMERCIAL</span>
-            <strong>Site + Suporte de TI</strong>
-            <small>Data: {date || '—'}</small>
-          </div>
-        </header>
-
-        <div className="accent-line" />
-
-        <section className="intro-section">
-          <div>
-            <p className="eyebrow">SOLUÇÃO DIGITAL E CONTINUIDADE OPERACIONAL</p>
-            <h1>Uma estrutura digital mais profissional para a sua empresa.</h1>
-            <p className="intro-copy">Esta proposta reúne o desenvolvimento do site institucional e o suporte técnico de TI para apoiar a operação da empresa com organização, segurança e atendimento contínuo.</p>
-          </div>
-          <div className="intro-stamp"><span>ROOTED</span><strong>TI</strong><small>TECNOLOGIA COM PROPÓSITO</small></div>
-        </section>
-
-        <section className="form-strip no-print">
-          <label>Cliente / empresa<input value={client} onChange={e => setClient(e.target.value)} placeholder="Nome da empresa" /></label>
-          <label>Contato<input value={contact} onChange={e => setContact(e.target.value)} placeholder="Nome, telefone ou e-mail" /></label>
-          <label>Data<input value={date} onChange={e => setDate(e.target.value)} placeholder="DD/MM/AAAA" /></label>
-        </section>
-        <section className="print-client print-only">
-          <b>Cliente:</b> {client || '—'} <span>•</span> <b>Contato:</b> {contact || '—'} <span>•</span> <b>Data:</b> {date || '—'}
-        </section>
-
-        <section className="section-block">
-          <div className="section-number">01</div>
-          <div className="section-content">
-            <p className="eyebrow">DESENVOLVIMENTO</p>
-            <h2>Site institucional</h2>
-            <p>Criação e entrega de um site profissional para apresentar a empresa, seus serviços, diferenciais e canais de contato, com layout responsivo para computador e celular.</p>
-            <div className="two-columns">
-              <ul>
-                <li>Estrutura visual alinhada à identidade da empresa.</li>
-                <li>Layout adaptado para celular, tablet e computador.</li>
-                <li>Seções institucionais e apresentação dos serviços.</li>
-              </ul>
-              <ul>
-                <li>Organização dos conteúdos fornecidos pelo cliente.</li>
-                <li>Publicação e ajustes finais conforme escopo alinhado.</li>
-                <li>Orientação básica para utilização e atualização.</li>
-              </ul>
-            </div>
-            <div className="price-card">
-              <div><span>Investimento do site</span><strong>{money(website)}</strong></div>
-              <div className="payment-pill">Entrada + conclusão</div>
-            </div>
-            <div className="payment-grid">
-              <div><span>01 · Entrada</span><strong>{money(entry)}</strong><small>Na aprovação da proposta e início do projeto.</small></div>
-              <div><span>02 · Finalização</span><strong>{money(final)}</strong><small>Na conclusão e entrega do site.</small></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section-block">
-          <div className="section-number">02</div>
-          <div className="section-content">
-            <p className="eyebrow">CONTINUIDADE E PREVENÇÃO</p>
-            <h2>Suporte de TI mensal</h2>
-            <p>Atendimento técnico para acompanhar o ambiente de tecnologia existente na empresa, buscando manter os equipamentos e serviços atuais organizados, disponíveis e funcionando de forma adequada.</p>
-            <div className="support-grid">
-              <article><b>Computadores e usuários</b><span>Orientações, ajustes, diagnóstico e suporte aos computadores existentes.</span></article>
-              <article><b>Servidor e configurações atuais</b><span>Acompanhamento do servidor, configurações existentes e apoio na resolução de falhas.</span></article>
-              <article><b>Câmeras e segurança</b><span>Suporte relacionado ao sistema de câmeras e aos recursos de segurança já instalados.</span></article>
-              <article><b>Rede e conectividade</b><span>Diagnóstico de problemas de rede, acesso e conectividade dentro do ambiente existente.</span></article>
-            </div>
-            <div className="price-card monthly"><div><span>Mensalidade de suporte de TI</span><strong>{money(support)}<small>/mês</small></strong></div><div className="payment-pill">Recorrente</div></div>
-          </div>
-        </section>
-
-        <section className="section-block terms-block">
-          <div className="section-number">03</div>
-          <div className="section-content">
-            <p className="eyebrow">CONDIÇÕES DO ATENDIMENTO</p>
-            <h2>Escopo, limites e responsabilidades</h2>
-            <div className="terms-list">
-              <div><b>Infraestrutura existente</b><p>O suporte considera os equipamentos, cabeamento, rede, servidor, câmeras e demais recursos que já estejam instalados na empresa no momento da contratação.</p></div>
-              <div><b>Serviços e materiais adicionais</b><p>Qualquer infraestrutura nova ou adicional, incluindo cabos, conectores, equipamentos, pontos de rede, expansão de Wi-Fi, substituições, instalações físicas, licenças e serviços de terceiros, será avaliada e cobrada separadamente mediante aprovação.</p></div>
-              <div><b>Mensalidade</b><p>A mensalidade de R$ 700,00 é devida mensalmente, mesmo quando não houver chamados, visitas ou ocorrências no período, pois mantém a disponibilidade do atendimento e o acompanhamento do ambiente.</p></div>
-              <div><b>Fora do escopo automático</b><p>Projetos novos, ampliações, mudanças estruturais, desenvolvimento de sistemas, marketing, tráfego pago, CRM e demandas não descritas nesta proposta não estão incluídos e poderão ser orçados à parte.</p></div>
-              <div><b>Agendamento e atendimento</b><p>Atendimentos presenciais, intervenções fora do horário comercial e demandas urgentes serão combinados conforme disponibilidade e complexidade, podendo gerar cobrança adicional quando aplicável.</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="investment-section">
-          <div><p className="eyebrow">RESUMO FINANCEIRO</p><h2>Investimento da proposta</h2><p>O site é pago em duas etapas. O suporte de TI é uma contratação mensal separada.</p></div>
-          <div className="investment-table">
-            <div><span>Site institucional</span><b>{money(website)}</b></div>
-            <div><span>Entrada do site</span><b>{money(entry)}</b></div>
-            <div><span>Saldo na finalização</span><b>{money(final)}</b></div>
-            <div><span>Suporte de TI mensal</span><b>{money(support)} / mês</b></div>
-            <div className="grand-total"><span>Total do projeto do site</span><strong>{money(totalInitial)}</strong></div>
-          </div>
-        </section>
-
-        <section className="approval-section">
-          <div><p className="eyebrow">PRÓXIMO PASSO</p><h2>Vamos colocar a proposta em prática?</h2><p>A aprovação inicia o alinhamento dos conteúdos do site e a organização do atendimento de suporte de TI.</p></div>
-          <div className="approval-box"><b>APROVAÇÃO</b><span>Cliente: {client || '—'}</span><span>Responsável: Roberto Jean Martins</span><div className="signature-line" /></div>
-        </section>
-
-        <section className="notes-section no-print">
-          <label>Observações adicionais (opcional)<textarea value={notes} onChange={e => setNotes(e.target.value)} placeholder="Inclua alguma observação específica para esta proposta..." /></label>
-        </section>
-        {notes && <section className="notes-print print-only"><b>Observações:</b><p>{notes}</p></section>}
-
-        <footer className="proposal-footer">
-          <div><b>ROOTED INFORMÁTICA</b><span>Suporte técnico • Desenvolvimento • Segurança</span></div>
-          <div><span>(41) 9750-3631</span><span>contato@rooted.com.br</span><span>www.rooted.com.br</span></div>
-        </footer>
-      </section>
-
-      <style jsx global>{`
-        :root { --ink:#101820; --dark:#071017; --lime:#dbe51c; --muted:#667078; --paper:#fff; --line:#e5e9e8; }
-        * { box-sizing:border-box; }
-        body { margin:0; background:#edf0ef; color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
-        button,input,textarea { font:inherit; }
-        .proposal-page { min-height:100vh; padding:28px; }
-        .proposal-toolbar { max-width:1120px; margin:0 auto 20px; display:flex; align-items:center; justify-content:space-between; gap:24px; background:var(--dark); color:white; border-radius:18px; padding:20px 24px; box-shadow:0 14px 36px #07101722; }
-        .toolbar-title { font-size:18px; font-weight:900; letter-spacing:2px; }.toolbar-title span { color:var(--lime); font-size:11px; letter-spacing:1px; margin-left:10px; }.proposal-toolbar p { margin:6px 0 0; color:#b9c2c6; font-size:12px; }.toolbar-actions { display:flex; gap:10px; flex-wrap:wrap; }
-        .btn { border:0; border-radius:999px; padding:12px 17px; font-weight:800; cursor:pointer; }.btn-light { background:white; color:var(--dark); }.btn-lime { background:var(--lime); color:var(--dark); }
-        .proposal-sheet { max-width:1120px; margin:0 auto; background:var(--paper); box-shadow:0 16px 55px #07101718; overflow:hidden; }
-        .proposal-header { display:flex; justify-content:space-between; align-items:center; padding:42px 52px 30px; background:var(--dark); color:white; }.rooted-brand { display:flex; align-items:center; gap:13px; }.rooted-symbol { display:grid; place-items:center; width:64px; height:64px; background:var(--lime); color:var(--dark); font-size:42px; font-weight:900; clip-path:polygon(0 0,100% 0,100% 28%,72% 28%,72% 100%,48% 100%,48% 47%,0 47%); }.rooted-brand strong { display:block; font-size:28px; letter-spacing:5px; }.rooted-brand small { display:block; color:#b8c2c5; letter-spacing:3px; font-size:10px; margin-top:5px; }.proposal-meta { text-align:right; }.proposal-meta span { display:block; color:var(--lime); font-size:10px; letter-spacing:2px; font-weight:900; }.proposal-meta strong { display:block; font-size:22px; margin:7px 0; }.proposal-meta small { color:#b8c2c5; font-size:12px; }.accent-line { height:9px; background:var(--lime); }
-        .intro-section { display:grid; grid-template-columns:1fr 180px; gap:30px; padding:42px 52px 32px; }.eyebrow { margin:0 0 10px; font-size:10px; font-weight:900; letter-spacing:2px; color:#6c777d; }.intro-section h1 { margin:0; max-width:730px; font-size:42px; line-height:1.08; letter-spacing:-1.5px; }.intro-copy { color:#526067; max-width:720px; line-height:1.65; font-size:14px; }.intro-stamp { align-self:center; border:1px solid #dfe5e3; border-radius:50%; width:160px; height:160px; display:grid; place-content:center; text-align:center; transform:rotate(-8deg); }.intro-stamp span { font-size:11px; letter-spacing:3px; }.intro-stamp strong { font-size:54px; line-height:1; letter-spacing:4px; }.intro-stamp small { font-size:7px; letter-spacing:1px; margin-top:8px; }
-        .form-strip { margin:0 52px 30px; padding:18px; background:#f4f6f5; border:1px solid var(--line); display:grid; grid-template-columns:1.4fr 1fr .6fr; gap:14px; }.form-strip label,.notes-section label { display:grid; gap:7px; color:#59666c; font-size:11px; font-weight:800; }.form-strip input,.notes-section textarea { width:100%; border:1px solid #d6dedb; border-radius:8px; padding:11px; background:white; color:var(--ink); }.print-client { margin:0 52px 28px; font-size:12px; color:#48545a; }.print-client span { margin:0 8px; color:#a0aaa9; }
-        .section-block { display:grid; grid-template-columns:64px 1fr; gap:20px; padding:36px 52px; border-top:1px solid var(--line); }.section-number { width:46px; height:46px; display:grid; place-items:center; background:var(--dark); color:var(--lime); font-size:13px; font-weight:900; }.section-content h2,.investment-section h2,.approval-section h2 { margin:0 0 12px; font-size:30px; letter-spacing:-.8px; }.section-content > p:not(.eyebrow),.investment-section p:not(.eyebrow),.approval-section p:not(.eyebrow) { color:#59676d; line-height:1.65; font-size:13px; max-width:820px; }.two-columns { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:24px 0; }.two-columns ul { margin:0; padding-left:18px; color:#48565d; font-size:12px; line-height:2; }.price-card { display:flex; align-items:center; justify-content:space-between; gap:15px; padding:20px 22px; background:var(--dark); color:white; margin-top:24px; }.price-card span { display:block; color:#b8c2c5; font-size:11px; }.price-card strong { display:block; color:white; font-size:31px; margin-top:5px; }.payment-pill { background:var(--lime); color:var(--dark); padding:8px 12px; border-radius:999px; font-size:10px; font-weight:900; white-space:nowrap; }.payment-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }.payment-grid > div { border:1px solid var(--line); padding:17px; }.payment-grid span { display:block; font-size:10px; font-weight:900; letter-spacing:1px; color:#647176; }.payment-grid strong { display:block; font-size:25px; margin:8px 0; }.payment-grid small { color:#778287; font-size:11px; line-height:1.5; }.support-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:22px; }.support-grid article { border-left:4px solid var(--lime); background:#f5f7f6; padding:16px; }.support-grid b { display:block; font-size:13px; }.support-grid span { display:block; margin-top:7px; color:#617077; font-size:12px; line-height:1.5; }.monthly { margin-top:20px; }.monthly strong small { font-size:12px; color:#b8c2c5; margin-left:5px; }.terms-block { background:#fbfcfb; }.terms-list { display:grid; gap:15px; margin-top:22px; }.terms-list > div { padding-bottom:14px; border-bottom:1px solid var(--line); }.terms-list b { font-size:12px; }.terms-list p { margin:6px 0 0; color:#627078; font-size:12px; line-height:1.6; }
-        .investment-section { display:grid; grid-template-columns:1fr 1fr; gap:36px; padding:38px 52px; background:var(--dark); color:white; }.investment-section .eyebrow { color:#b8c2c5; }.investment-section h2 { color:white; }.investment-section p { color:#b8c2c5!important; }.investment-table { border:1px solid #324047; }.investment-table > div { display:flex; justify-content:space-between; gap:15px; padding:14px 17px; border-bottom:1px solid #324047; font-size:12px; }.investment-table > div:last-child { border-bottom:0; }.investment-table b { color:var(--lime); }.investment-table .grand-total { background:#17252b; align-items:center; }.investment-table .grand-total strong { font-size:25px; color:white; }.approval-section { display:grid; grid-template-columns:1fr 1fr; gap:36px; padding:38px 52px; }.approval-box { border:1px solid var(--line); padding:20px; display:grid; gap:12px; font-size:12px; }.approval-box b { color:#758187; font-size:10px; letter-spacing:2px; }.approval-box span { color:#536168; }.signature-line { height:35px; border-bottom:1px solid #8b969a; margin-top:18px; }.notes-section { margin:0 52px 35px; padding-top:25px; border-top:1px solid var(--line); }.notes-section textarea { min-height:80px; resize:vertical; }.notes-print { margin:0 52px 30px; padding:18px; background:#f5f7f6; font-size:12px; }.notes-print p { white-space:pre-wrap; color:#59676d; }.proposal-footer { display:flex; justify-content:space-between; gap:20px; padding:24px 52px; background:var(--lime); color:var(--dark); }.proposal-footer div:last-child { text-align:right; }.proposal-footer b,.proposal-footer span { display:block; font-size:10px; margin:4px 0; }.proposal-footer b { letter-spacing:1px; }
-        .print-only { display:none; }
-        @media (max-width:800px) { .proposal-page { padding:10px; }.proposal-toolbar,.proposal-header,.intro-section,.investment-section,.approval-section { display:block; }.toolbar-actions { margin-top:15px; }.proposal-header { padding:28px 24px; }.proposal-meta { text-align:left; margin-top:25px; }.intro-section,.section-block,.investment-section,.approval-section { padding:28px 24px; }.intro-section h1 { font-size:31px; }.intro-stamp { margin:25px auto 0; }.form-strip { margin:0 24px 24px; grid-template-columns:1fr; }.section-block { grid-template-columns:1fr; gap:12px; }.two-columns,.payment-grid,.support-grid { grid-template-columns:1fr; }.price-card { align-items:flex-start; flex-direction:column; }.proposal-footer { padding:22px 24px; display:block; }.proposal-footer div:last-child { text-align:left; margin-top:18px; } }
-        @media print { @page { size:A4; margin:0; } body { background:white; }.no-print { display:none!important; }.print-only { display:block; }.proposal-page { padding:0; }.proposal-sheet { max-width:none; box-shadow:none; }.proposal-header { padding:30px 38px 22px; }.intro-section { padding:28px 38px 20px; }.intro-section h1 { font-size:32px; }.section-block { padding:24px 38px; break-inside:avoid; }.form-strip { display:none; }.print-client { margin:0 38px 20px; }.investment-section { padding:28px 38px; }.approval-section { padding:28px 38px; break-inside:avoid; }.proposal-footer { padding:18px 38px; }.support-grid,.two-columns { gap:10px; }.section-content h2 { font-size:24px; }.price-card strong { font-size:26px; } }
-      `}</style>
-    </main>
-  )
+export default function Proposta(){
+ const [client,setClient]=useState('Ecco Cleaner'),[contact,setContact]=useState(''),[date,setDate]=useState(new Date().toLocaleDateString('pt-BR')),[notes,setNotes]=useState('')
+ return <main className="app">
+  <div className="toolbar no-print"><div><b>ROOTED <span>PROPOSTA PREMIUM</span></b><p>Documento organizado em páginas A4, pronto para salvar como PDF.</p></div><div><button className="light" onClick={()=>window.print()}>↓ Gerar PDF</button><button onClick={()=>window.scrollTo({top:0,behavior:'smooth'})}>↑ Topo</button></div></div>
+  <div className="editor no-print"><label>Empresa<input value={client} onChange={e=>setClient(e.target.value)}/></label><label>Contato<input value={contact} onChange={e=>setContact(e.target.value)} placeholder="Nome, telefone ou e-mail"/></label><label>Data<input value={date} onChange={e=>setDate(e.target.value)}/></label></div>
+  <div className="doc">
+   <Page num="01" title="Proposta comercial" cover><div className="cover"><small>SOLUÇÃO DIGITAL • CONTINUIDADE OPERACIONAL</small><h1>Uma estrutura digital mais profissional para sua empresa.</h1><p>Desenvolvimento de site institucional e suporte técnico de TI para apoiar a operação com organização, segurança e atendimento contínuo.</p><div className="client"><small>PROPOSTA PREPARADA PARA</small><h2>{client||'—'}</h2><span>{contact||'Contato não informado'}</span></div><div className="price"><small>INVESTIMENTO DO SITE</small><strong>{brl(4000)}</strong><span>R$ 2.000 de entrada + R$ 2.000 na finalização</span></div></div></Page>
+   <Page num="02" title="Desenvolvimento do site"><Kicker>01 • DESENVOLVIMENTO</Kicker><h1>Site institucional</h1><p>Criação e entrega de um site profissional, responsivo e alinhado à identidade da empresa.</p><div className="cards"><Card t="Identidade visual" d="Layout alinhado à identidade e ao posicionamento da empresa."/><Card t="Layout responsivo" d="Adaptação para computador, tablet e celular."/><Card t="Apresentação" d="Seções institucionais, serviços e diferenciais."/><Card t="Conteúdo" d="Organização dos materiais fornecidos pelo cliente."/><Card t="Publicação" d="Publicação e ajustes finais conforme o escopo."/><Card t="Orientação" d="Orientação básica para utilização e atualização."/></div><Box title="Investimento total" value={brl(4000)}/><div className="payments"><Card t="01 • Entrada" d="Na aprovação e início do projeto." value={brl(2000)}/><Card t="02 • Finalização" d="Na conclusão e entrega do site." value={brl(2000)}/></div></Page>
+   <Page num="03" title="Suporte técnico mensal"><Kicker>02 • CONTINUIDADE E PREVENÇÃO</Kicker><h1>Suporte de TI</h1><p>Atendimento técnico focado nos equipamentos e na infraestrutura já existente na empresa.</p><div className="cards"><Card t="Computadores e usuários" d="Orientações, ajustes, diagnóstico e suporte aos computadores existentes."/><Card t="Servidor e configurações" d="Acompanhamento do servidor e das configurações atuais."/><Card t="Câmeras e segurança" d="Suporte aos sistemas de câmeras e recursos de segurança instalados."/><Card t="Rede e conectividade" d="Diagnóstico de falhas de rede, acesso e conectividade."/></div><Box title="Mensalidade de suporte" value={brl(700)+' / mês'}/><Kicker>CONDIÇÕES DO ATENDIMENTO</Kicker><Term t="Infraestrutura existente" d="O suporte considera equipamentos, cabeamento, rede, servidor, câmeras e recursos já instalados na empresa."/><Term t="Adicionais cobrados separadamente" d="Cabos, conectores, equipamentos, pontos de rede, expansão de Wi-Fi, substituições, instalações físicas, licenças e serviços de terceiros serão avaliados e cobrados à parte, mediante aprovação."/><Term t="Mensalidade" d="A mensalidade de R$ 700,00 é devida mensalmente, mesmo quando não houver chamados, visitas ou ocorrências no período."/></Page>
+   <Page num="04" title="Condições e aprovação"><Kicker>03 • ESCOPO, LIMITES E RESPONSABILIDADES</Kicker><h1>Condições gerais</h1><Term t="Fora do escopo automático" d="Projetos novos, ampliações, mudanças estruturais, desenvolvimento de sistemas, marketing, tráfego pago, CRM e demandas não descritas não estão incluídos e poderão ser orçados à parte."/><Term t="Agendamento e atendimento" d="Atendimentos presenciais, intervenções fora do horário comercial e demandas urgentes serão combinados conforme disponibilidade e complexidade."/><Term t="Aprovação prévia" d="Nenhum material, equipamento ou ampliação será adquirido ou executado sem alinhamento e aprovação prévia do cliente."/><div className="summary"><div><Kicker>RESUMO FINANCEIRO</Kicker><h2>Investimento</h2><p>O site é pago em duas etapas. O suporte de TI é uma contratação mensal separada.</p></div><div><p>Site institucional <b>{brl(4000)}</b></p><p>Entrada <b>{brl(2000)}</b></p><p>Finalização <b>{brl(2000)}</b></p><p>Suporte mensal <b>{brl(700)}</b></p><strong>Total do site: {brl(4000)}</strong></div></div>{notes&&<div className="notes"><b>Observações:</b><p>{notes}</p></div>}<div className="approval"><div><Kicker>PRÓXIMO PASSO</Kicker><h2>Vamos colocar a proposta em prática?</h2><p>A aprovação inicia o alinhamento dos conteúdos do site e do atendimento de suporte.</p></div><div className="signature"><b>APROVAÇÃO</b><span>Cliente: {client||'—'}</span><span>Responsável: Roberto Jean Martins</span><i></i><small>Assinatura / aceite</small></div></div></Page>
+  </div>
+  <div className="notes-editor no-print"><label>Observações adicionais<textarea value={notes} onChange={e=>setNotes(e.target.value)} placeholder="Observação específica para esta proposta..."/></label></div>
+  <style jsx global>{`*{box-sizing:border-box}body{margin:0;background:#e9eeeb;color:#101a20;font-family:Arial,Helvetica,sans-serif}.app{padding:28px}.toolbar,.editor{max-width:1120px;margin:0 auto 16px;padding:18px 22px;border-radius:18px;background:#071017;color:#fff;display:flex;justify-content:space-between;gap:18px;align-items:center}.toolbar b{font-size:18px;letter-spacing:3px}.toolbar b span{font-size:10px;color:#dce51c;letter-spacing:1px}.toolbar p{font-size:12px;color:#b9c4c8;margin:7px 0 0}.toolbar button{border:0;border-radius:999px;padding:12px 18px;background:#dce51c;font-weight:800;margin-left:8px;cursor:pointer}.toolbar button.light{background:#fff}.editor{background:#fff;color:#4d5b61;border-radius:12px;display:grid;grid-template-columns:1.4fr 1fr .6fr}.editor label,.notes-editor label{display:grid;gap:7px;font-size:11px;font-weight:800}.editor input,.notes-editor textarea{border:1px solid #d5dfdb;border-radius:8px;padding:11px;font:inherit;color:#101a20}.doc{max-width:1120px;margin:auto;display:grid;gap:22px}.page{background:#fff;min-height:1120px;display:flex;flex-direction:column;box-shadow:0 15px 45px #07101718;overflow:hidden}.head{background:#071017;color:#fff;padding:36px 52px 26px;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:12px;align-items:center}.mark{width:58px;height:58px;display:grid;place-items:center;background:#dce51c;color:#071017;font-size:40px;font-weight:900;clip-path:polygon(0 0,100% 0,100% 28%,72% 28%,72% 100%,48% 100%,48% 47%,0 47%)}.brand strong{font-size:28px;letter-spacing:5px}.brand small{display:block;font-size:9px;letter-spacing:2px;color:#b9c4c8;margin-top:4px}.meta{text-align:right}.meta small,.meta b{display:block}.meta b{font-size:20px;margin:6px 0;color:#fff}.meta small{font-size:11px;color:#b9c4c8}.meta span{font-size:10px;letter-spacing:2px;color:#dce51c;font-weight:900}.bar{height:9px;background:#dce51c}.body{padding:28px 52px;flex:1}.foot{padding:15px 52px;border-top:1px solid #e4e9e7;display:flex;justify-content:space-between;color:#7a878c;font-size:9px;letter-spacing:1px}.cover{padding:65px 70px;flex:1}.cover>small,.kicker{font-size:10px;letter-spacing:2px;font-weight:900;color:#718087}.cover h1{font-size:49px;line-height:1.05;letter-spacing:-2px;max-width:800px;margin:18px 0}.cover>p,.body>p,.summary p,.approval p{color:#5c6b72;font-size:14px;line-height:1.7;max-width:790px}.client{margin-top:55px;padding:25px;border-left:5px solid #dce51c;background:#f4f7f5}.client h2{font-size:28px;margin:12px 0 6px}.client span{font-size:12px;color:#718087}.price{margin-top:45px;background:#071017;color:#fff;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:15px}.price small{color:#b9c4c8}.price strong{font-size:35px;color:#dce51c}.price span{font-size:11px;color:#b9c4c8}.title{padding:23px 52px;border-bottom:1px solid #e4e9e7;display:flex;justify-content:space-between}.title h2{margin:0;font-size:25px}.title span{font-size:10px;color:#7a878c;font-weight:900}.body h1{font-size:35px;letter-spacing:-1px;margin:10px 0}.cards,.payments{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:25px 0}.card{border:1px solid #e4e9e7;border-left:4px solid #dce51c;padding:16px;background:#fbfcfb}.card b{font-size:13px}.card span{display:block;color:#68767c;font-size:12px;line-height:1.5;margin-top:7px}.card strong{display:block;font-size:24px;margin-top:10px}.box{background:#071017;color:#fff;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:15px;margin:20px 0}.box small{display:block;color:#b9c4c8;font-size:10px;letter-spacing:1px}.box strong{font-size:32px;color:#dce51c}.term{padding:0 0 13px;margin-top:16px;border-bottom:1px solid #e4e9e7}.term b{font-size:12px}.term p{font-size:11px;line-height:1.6;color:#65747b;margin:6px 0 0}.summary{margin-top:26px;background:#071017;color:#fff;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:25px}.summary h2{margin:8px 0;font-size:25px}.summary p{color:#b9c4c8;font-size:12px;display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #33434b;padding-bottom:8px}.summary b{color:#dce51c}.summary>div>strong{display:block;background:#17262d;padding:13px;margin-top:10px}.approval{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:28px}.signature{border:1px solid #e4e9e7;padding:18px;display:grid;gap:10px;font-size:11px}.signature span{color:#5c6b72}.signature i{height:35px;border-bottom:1px solid #89959a;margin-top:15px}.signature small{color:#7a878c}.notes{background:#f4f7f5;padding:14px;margin-top:18px;font-size:11px}.notes-editor{display:block;background:#fff;color:#4d5b61;border-radius:12px}.notes-editor textarea{display:block;width:100%;min-height:80px;margin-top:8px;resize:vertical}.no-print{display:flex}
+@media(max-width:800px){.app{padding:10px}.toolbar,.head,.summary,.approval,.price{display:block}.toolbar button{margin:12px 8px 0 0}.editor{grid-template-columns:1fr}.head{padding:28px 24px}.meta{text-align:left;margin-top:20px}.body,.cover{padding:30px 24px}.cover h1{font-size:35px}.cards,.payments{grid-template-columns:1fr}.foot{padding:14px 24px}.price strong{display:block;margin:10px 0}.box{display:block}.box strong{display:block;margin-top:8px}}
+@media print{@page{size:A4 portrait;margin:0}html,body{background:#fff!important}.no-print{display:none!important}.app{padding:0}.doc{display:block;max-width:none}.page{width:210mm;height:297mm;min-height:297mm;max-height:297mm;box-shadow:none;break-after:page;page-break-after:always;overflow:hidden}.page:last-child{break-after:auto;page-break-after:auto}.head{padding:23mm 18mm 13mm}.mark{width:18mm;height:18mm;font-size:12mm}.brand strong{font-size:8mm}.brand small{font-size:2.5mm}.meta span{font-size:2.5mm}.meta b{font-size:5mm}.meta small{font-size:3mm}.bar{height:3mm}.body{padding:10mm 18mm 12mm}.title{padding:9mm 18mm}.title h2{font-size:6mm}.title span{font-size:2.5mm}.cover{padding:23mm 18mm 12mm}.cover h1{font-size:13mm;max-width:175mm}.cover>p,.body>p{font-size:3.4mm;line-height:1.55}.client{margin-top:18mm;padding:6mm}.client h2{font-size:7mm}.price{margin-top:15mm;padding:6mm}.price strong{font-size:9mm}.price span,.price small{font-size:2.7mm}.cards,.payments{gap:3mm;margin:6mm 0}.card{padding:4mm}.card b{font-size:3.2mm}.card span{font-size:2.8mm}.card strong{font-size:6mm}.body h1{font-size:9mm}.box{padding:5mm 6mm;margin:5mm 0}.box strong{font-size:8mm}.box small{font-size:2.7mm}.term{margin-top:4mm;padding-bottom:3mm}.term b{font-size:3mm}.term p{font-size:2.8mm;line-height:1.4}.summary{padding:5mm;margin-top:5mm;gap:5mm}.summary h2{font-size:6mm}.summary p{font-size:2.8mm}.summary>div>strong{font-size:3mm}.approval{gap:5mm;margin-top:5mm}.signature{padding:4mm;font-size:2.8mm}.foot{padding:4mm 18mm;font-size:2.4mm}.kicker{font-size:2.7mm}}
+`}</style>
+ </main>
 }
+
+function Page({num,title,children,cover=false}:{num:string,title:string,children:React.ReactNode,cover?:boolean}){return <section className="page"><header className="head"><div className="brand"><span className="mark">R</span><div><strong>ROOTED</strong><small>TECNOLOGIA & SOLUÇÕES</small></div></div><div className="meta"><span>PROPOSTA COMERCIAL</span><b>{title}</b><small>Data do documento</small></div></header><div className="bar"/>{cover?children:<><div className="title"><h2>{title}</h2><span>ROOTED / {num}</span></div><div className="body">{children}</div></>}<footer className="foot"><span>ROOTED INFORMÁTICA • SUPORTE • DESENVOLVIMENTO</span><span>{num} / 04</span></footer></section>}
+function Kicker({children}:{children:React.ReactNode}){return <div className="kicker">{children}</div>}
+function Card({t,d,value}:{t:string,d:string,value?:string}){return <div className="card"><b>{t}</b><span>{d}</span>{value&&<strong>{value}</strong>}</div>}
+function Box({title,value}:{title:string,value:string}){return <div className="box"><div><small>{title}</small><strong>{value}</strong></div><b>ROOTED</b></div>}
+function Term({t,d}:{t:string,d:string}){return <div className="term"><b>{t}</b><p>{d}</p></div>}
